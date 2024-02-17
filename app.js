@@ -27,7 +27,7 @@ mongoose.connect(url,connectionParams)
         console.error(`Error connecting to the database. n${err}`);
     })
 
-app.use("/user", Users)
+app.use("/users", Users)
 
 app.use("/tasks", Task)
 

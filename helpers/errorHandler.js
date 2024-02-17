@@ -32,11 +32,6 @@ async function errorHandler(errordetail) {
             err['messgae'] = errors[i].message.replace(/"/g, '').replace(/\\/g, '')
             errordetail.push(err)
         }
-        // if (errors[i].message.includes('less')){
-        //     err['path'] = path
-        //     err['message'] = errors[i].message.replace(/"/g, '').replace(/\\/g, '')
-        //     errordetail.push(err)
-        // }
     }
     return errordetail
 }

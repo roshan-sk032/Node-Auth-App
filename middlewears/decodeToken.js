@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {Users} = require('../models/UserModel')
+const {Users} = require('../models/userModel')
 const constants = require('../constants/messageConstants');
 
 async function requireToken(req, res, next) {

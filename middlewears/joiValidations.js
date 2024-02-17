@@ -3,7 +3,7 @@ const Joi = require('joi');
 const errorHandler = require('../helpers/errorHandler')
 
 
-const UserValidateSchema = Joi.object({
+const userValidateSchema = Joi.object({
     first_name: Joi.string().min(3).max(30).required(),
     last_name: Joi.string().min(1).max(10).required(),
     username: Joi.string().min(3).max(20).required(),
@@ -13,12 +13,12 @@ const UserValidateSchema = Joi.object({
     confirm_password: Joi.string().valid(Joi.ref('password')).required()
 });
 
-const SignInSchema = Joi.object({
+const signInSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().required(),
 })
 
-const PasswordUpdateValidationSchema = Joi.object({
+const passwordUpdateValidationSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%*]).{8,}$/).required(),
     confirm_password: Joi.string().valid(Joi.ref('password')).required()
@@ -58,4 +58,4 @@ const validateBody = (schema) => {
 };
 
 
-module.exports = {validateBody,UserValidateSchema,SignInSchema,PasswordUpdateValidationSchema,taskValidateSchema}
+module.exports = {validateBody,userValidateSchema,signInSchema,passwordUpdateValidationSchema,taskValidateSchema}

@@ -1,4 +1,4 @@
-const controllers = require('../controllers/taskController')
+const userController = require('../controllers/taskController')
 const express = require('express');
 // const { route } = require('./userRoutes');
 const { requireToken } = require('../middlewears/decodeToken');
@@ -8,11 +8,11 @@ const {validateBody,taskValidateSchema} = require('../middlewears/joiValidations
 
 router.use(express.json());
 
-router.post('/',requireToken, validateBody(taskValidateSchema), controllers.createTask);
-router.get('/',requireToken, controllers.getAll);
-router.put('/:id',requireToken, controllers.updateTask);
-router.get('/:id',requireToken, controllers.getOneTask);
-router.delete('/:id',requireToken, controllers.deleteTask);
+router.post('/',requireToken, validateBody(taskValidateSchema), userController.createTask);
+router.get('/',requireToken, userController.getAll);
+router.put('/:id',requireToken, userController.update);
+router.get('/:id',requireToken, userController.getOne);
+router.delete('/:id',requireToken, userController.delTask);
 
 
 module.exports = router;

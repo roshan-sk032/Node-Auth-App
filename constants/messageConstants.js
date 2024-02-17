@@ -18,6 +18,7 @@ module.exports = Object.freeze({
     OLD_AND_NEW_PASSWORD_SHOULD_NOT_BE_SAME:"New password should not be the same as the old password",
     PASSWORD_CHANGED:"Password changed successfully",
     UPDATED_PROFILE:"Successfully updated profile",
+    USER_NOT_EXIST:'User not exist',
     NOT_AUTH_TO_UPDATE_PROFILE:'You are not authrozied to update this profile',
     USER_DELETED:"user deleted successfully.",
     NOT_AUTH_TO_DELETE_PROFILE:'You are not authrozied to delete this profile',
