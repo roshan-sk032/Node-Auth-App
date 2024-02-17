@@ -111,10 +111,9 @@ class userController {
             
             const UserData = await userServie.getAllUsers(filter_query,sort,page,limit,count,totalPages)
             
-            console.log(UserData    )
-            return res.render('home', {data:UserData});
+            // return res.render('home', {data:UserData});
             // console.log(data.totalCount)
-            // res.status(200).json({success:true, message : constants.FETCHED_USERS, ...UserData})
+            res.status(200).json({success:true, message : constants.FETCHED_USERS, ...UserData})
         } catch (error) {
             res.status(500).json({success:false, error : error.message})
         }
