@@ -1,0 +1,31 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Home Page</title> 
+
+    <style type="text/css" media="screen"> 
+        body { 
+            background-color: skyblue; 
+            text-decoration-color: white; 
+            font-size: 2em; 
+        } 
+    </style> 
+</head> 
+
+<body> 
+    <center>
+        <p>This is our home page.</p>
+        <p>Total Count: <%= data.totalCount %></p>
+        <p>Total Pages: <%= data.totalPages %></p>
+        <p>Results Per Page: <%= data.ResultPerPage %></p>
+        <p>Current Page: <%= data.currentPage %></p>
+        <p>Next Page: <%= data.nextPage %></p>
+        <p>Previous Page: <%= data.previousPage %></p>
+
+        
+        <p>Data : <%=data.data%></p>
+        
+    </center>
+
+</body> 
+</html>
