@@ -35,10 +35,10 @@ const userSchema = new mongoose.Schema({
         required : [true, 'Password field is required'],
         validate : [validator.isStrongPassword, 'Enter a strong password with minimun length is 8 characters, which has to one UpperCase, one lowerCase, One special character & Atleast one number']
     },
-    confirm_password : {
-        type : String,
-        required : [true, 'Confirm password field is required'],
-    }
+    // confirm_password : {
+    //     type : String,
+    //     required : [true, 'Confirm password field is required'],
+    // }
 })
 
 const taskSchema = new mongoose.Schema({

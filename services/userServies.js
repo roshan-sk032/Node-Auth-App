@@ -17,7 +17,7 @@ class userServie {
     async addUser(body) {
         const {first_name,last_name,username,email,password,confirm_password,user_type} = body
         const hash = await hash_Password(password);
-        const userObj = await Users.create({first_name,last_name,username,email,password:hash,confirm_password:hash,user_type})
+        const userObj = await Users.create({first_name,last_name,username,email,password:hash,user_type})
         return userObj
     }
     

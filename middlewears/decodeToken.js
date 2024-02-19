@@ -8,8 +8,18 @@ async function requireToken(req, res, next) {
         if (!token) {
             return res.status(401).json({ success: false, message:constants.TOKEN_REQUIRE});
         }
-        const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-        const user = await Users.findById(decodedToken.userId)
+        
+        try {
+            var decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+        } catch (error) {
+            return res.status(403).json({success:false, message:constants.INCORRECT_TOKEN})
+        }
+
+        const user = await Users.findOne({_id:decodedToken.userId,password:decodedToken.password})
+        if (!user){
+            return res.status(403).json({success:false, message:constants.INVALID_TOKEN})
+        }
+
         req.user = user;
 
         next();

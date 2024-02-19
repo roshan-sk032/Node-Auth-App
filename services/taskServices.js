@@ -1,4 +1,6 @@
 const {Task} = require('../models/userModel')
+const {Users} = require('../models/userModel')
+
 
 class taskService {
 
@@ -14,7 +16,11 @@ class taskService {
     
     async addTask(body) {
         const {title,description,user} = body;
-    
+        const userData = await Users.findOne({_id:user})
+        if (userData.user_type==='admin'){
+            const message={message:'admin user id is not allowed'}
+            return message
+        }
         const task = await Task.create({title,description,user})
         return task
     }
@@ -38,6 +44,11 @@ class taskService {
     async deleteTask(id) {
         const TaskObj = await Task.findByIdAndDelete(id)
         return TaskObj
+    }
+
+    async insertMany(data) {
+        const Data = await Task.insertMany(data)
+        return Data
     }
 }
 

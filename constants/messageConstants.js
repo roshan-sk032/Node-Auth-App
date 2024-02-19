@@ -9,6 +9,8 @@ module.exports = Object.freeze({
     TASK_NOT_EXIST:'Task does not exists',
     TASK_DELETED:'Task deleted successfully',
 
+    INSERT:'Data inserted successfully',
+
 
     FETCHED_USERS:"Successfully fetched users",
     USER_ADDED:"User registered successfully",
@@ -29,4 +31,6 @@ module.exports = Object.freeze({
 
     TOKEN_REQUIRE:"Token is required",
     NOT_AUTH:'you are not authorized',
+    INCORRECT_TOKEN:'Incorrect token',
+    INVALID_TOKEN:'Token invalid or expired'
 })

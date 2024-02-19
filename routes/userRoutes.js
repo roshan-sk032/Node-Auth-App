@@ -19,4 +19,6 @@ router.get('/getprofile',requireToken, userController.getProfile);
 
 router.get('/forgot_password', userController.forgotPassword);
 
+router.get('/seeding', userController.dataSeeding)
+
 module.exports = router;

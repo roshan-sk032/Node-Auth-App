@@ -4,6 +4,8 @@ const sorting = require('../helpers/sorting')
 const pagination = require('../helpers/pagination')
 const taskService = require('../services/taskServices')
 const constants = require('../constants/messageConstants')
+const { taskDummyData } = require('../helpers/faker')
+const { promises } = require('nodemailer/lib/xoauth2')
 
 
 
@@ -27,7 +29,7 @@ class taskController {
             res.status(200).json({success:true, message:constants.TASK_CREATED, data:Data})
         } catch (error) {
     
-            res.status(500).json({success:false, error:error})
+            res.status(500).json({success:false, error:error.message})
         }
     }
     
@@ -120,7 +122,7 @@ class taskController {
                 return res.status(401).json({success:false, message:constants.NOT_AUTH_TO_DELETE})    
             }
 
-            const taskData = await deleteTask(id)
+            const taskData = await taskService.deleteTask(id)
             
             return res.status(200).json({success:true, message:constants.TASK_DELETED})
         
@@ -128,6 +130,37 @@ class taskController {
             res.status(500).json({success:false, error:error.message})
         }
     }
+
+    async allTasks(req, res, next){
+        try {
+            const body = req.body
+            const {title, description, user } = body
+            const Data = await Task.insert({title, description,user})
+            req.data = Data
+            next();
+        } catch (error) {
+            return res.status(500).json({success:false, message:error.message})
+        }
+    }
+
+    async task(req, res){
+        return res.status(200).json({sucecss:true,message:'success', data:req.data})
+    }
+
+    async taskDataSeedind(req, res){
+        try {
+            const taskData = await taskDummyData()
+            
+            const data = await taskService.insertMany(taskData)
+
+            return res.status(200).json({success:true,message:constants.INSERT, inserted_Count:data.length})
+        } 
+        catch (error) {
+            res.status(500).json({success:false, error:error.message})
+        }
+    }
+
+    
 }
 
 module.exports = new taskController()

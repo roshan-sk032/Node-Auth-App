@@ -1,20 +1,34 @@
-// const { faker } = require('@faker-js/faker');
-// const hashPassword = require('./services/hashPassword');
-
-// async function DummyData() {
-//   let array = [];
-//   for (let i = 0; i < 2; i++) {
-//     let userData = {}; 
-//     const first_name = faker.person.firstName();
-//     const last_name = faker.person.lastName();
-//     const username = faker.internet.userName();
-//     const email = faker.internet.email().toLowerCase();
-//     const password = await hashPassword(first_name + '@123');
-//     const confirm_password = password
-//     userData = {first_name: first_name, last_name: last_name, username: username, email: email, password: password, confirm_password:confirm_password};
-//     array.push(userData);
-//   }
-//   console.log(array);
+// function callBack(a,b, next){
+//     let c = a+b;
+//     next(c, callC); 
 // }
 
-// DummyData();
+// function callB(c, nextcall){
+//     console.log('callBackB',c);
+//     nextcall(c + 10);
+// }
+
+// function callC(x){
+//     console.log("callBackC-",x)
+//     return
+// }
+
+// callBack(5,10, callB)
+
+
+// function promiseTest(a, b) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             const c = a+b
+//             resolve(c);
+//         }, 10000);
+//     })
+// }
+
+// promiseTest(5,10)
+// .then(data => {
+    
+//     console.log('promise',data);console.log('came')})
+//     .catch(err => {
+//     console.log(err)
+// })

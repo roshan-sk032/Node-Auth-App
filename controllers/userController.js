@@ -9,6 +9,7 @@ const sorting = require('../helpers/sorting')
 const pagination = require('../helpers/pagination')
 const userServie = require('../services/userServies')
 const constants = require('../constants/messageConstants')
+const {dummyData} = require('../helpers/faker')
 
 
 class userController {
@@ -35,9 +36,9 @@ class userController {
                 return res.status(404).json({success:false, message: constants.EMAIL_NOT_FOUND });
             }
             const matched = await bcrypt.compare(password, user.password);
+
     
-    
-            const token=jwt.sign({userId : user._id, username : user.username},process.env.SECRET_KEY,{expiresIn : "72h"})
+            const token=jwt.sign({userId : user._id, password : user.password   },process.env.SECRET_KEY,{expiresIn : "72h"})
     
             const url = `http://${req.hostname}:${process.env.PORT}/user/forgot_password`
             
@@ -144,7 +145,7 @@ class userController {
             let RequestId = RequestData._id
             const results = await userServie.getOneUser(RequestId)
             
-            res.status(200).json({success:true, message:constants.FETCHED_PROFILE, data: results});
+            res.status(200).json({success:true, message:constants.FETCHED_PROFILE, data: RequestData});
         } catch (error) {
             res.status(500).json({success:false, error:error.message})
         }
@@ -171,7 +172,22 @@ class userController {
             res.status(500).json({success:false, error: error.message });
         }
     }
+
+
+    async dataSeeding(req, res) {
+        try {
+            const userData = await dummyData()
+            console.log(userData.length)
+            const Data = await Users.insertMany(userData)
+            return res.status(200).json({success:true, message:'successfully data inserted.', inserted_Count:Data.length})
+        } catch (error) {
+            res.status(500).json({success:false, error: error.message });
+        }
+    }
 }
+
+
+
 
 
 module.exports = new userController();
